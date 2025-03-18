@@ -7,12 +7,21 @@ import ShopPage from './pages/Shop.jsx'
 import ContactPage from './pages/Contact.jsx'
 import CartPage from './pages/Cart.jsx'
 import CheckoutPage from './pages/Checkout.jsx'
+import { CartProvider } from './context/CartContext.jsx'
+import Shop from './pages/Shop.jsx'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <Routes>
       <Route path='/' element={<App />} />
-      <Route path='/shop' element={<ShopPage />} />
+      <Route
+        path='/shop'
+        element={
+          <CartProvider>
+            <ShopPage />
+          </CartProvider>
+        }
+      />
       <Route path='/contact' element={<ContactPage />} />
       <Route path='/cart' element={<CartPage />} />
       <Route path='/checkout' element={<CheckoutPage />} />

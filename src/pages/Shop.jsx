@@ -1,6 +1,8 @@
 "use client"
 
 import { useState } from "react"
+import Single from '../assets/SINGLE layer 2.png'
+import Single1 from '../assets/SINGLE layer.png'
 import Navbar from "../components/Navbar.jsx"
 import Footer from "../components/Footer.jsx"
 
@@ -12,15 +14,15 @@ export default function ShopPage() {
   const products = [
     {
       id: 1,
-      name: "Classic Tiramisu",
+      name: "Single Layer",
       price: 5.99,
       image:
-        "https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&auto=format&fit=crop&w=1025&q=80",
+        Single,
       description: "Our signature flavor combines mascarpone, espresso, and cocoa for an authentic Italian experience.",
     },
     {
       id: 2,
-      name: "Strawberry Dream",
+      name: "Double Layer",
       price: 4.99,
       image:
         "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?ixlib=rb-4.0.3&auto=format&fit=crop&w=987&q=80",
@@ -28,14 +30,14 @@ export default function ShopPage() {
     },
     {
       id: 3,
-      name: "Chocolate Hazelnut",
+      name: "Single Layer",
       price: 5.49,
-      image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=927&q=80",
+      image: Single1,
       description: "Rich chocolate gelato with roasted hazelnuts, inspired by Italy's favorite chocolate spread.",
     },
     {
       id: 4,
-      name: "Vanilla Bean",
+      name: "Double Layer",
       price: 4.49,
       image:
         "https://images.unsplash.com/photo-1570197788417-0e82375c9371?ixlib=rb-4.0.3&auto=format&fit=crop&w=987&q=80",
@@ -43,7 +45,7 @@ export default function ShopPage() {
     },
     {
       id: 5,
-      name: "Pistachio Delight",
+      name: "Single Layer",
       price: 6.49,
       image:
         "https://images.unsplash.com/photo-1579954115545-a95591f28bfc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
@@ -51,7 +53,7 @@ export default function ShopPage() {
     },
     {
       id: 6,
-      name: "Mango Tango",
+      name: "Double Layer",
       price: 5.29,
       image:
         "https://images.unsplash.com/photo-1501443762994-82bd5dace89a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
@@ -59,7 +61,7 @@ export default function ShopPage() {
     },
     {
       id: 7,
-      name: "Mint Chocolate Chip",
+      name: "Single Layer",
       price: 5.49,
       image:
         "https://images.unsplash.com/photo-1505394033641-40c6ad1178d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=987&q=80",
@@ -67,14 +69,14 @@ export default function ShopPage() {
     },
     {
       id: 8,
-      name: "Caramel Swirl",
+      name: "Double Layer",
       price: 5.29,
       image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=927&q=80",
       description: "Smooth vanilla gelato with rich caramel swirls throughout for a sweet, buttery treat.",
     },
     {
       id: 9,
-      name: "Blueberry Cheesecake",
+      name: "Single Layer",
       price: 6.29,
       image:
         "https://images.unsplash.com/photo-1587563974553-d6c4ef38f6d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=987&q=80",
@@ -244,4 +246,3 @@ export default function ShopPage() {
     </div>
   )
 }
-
