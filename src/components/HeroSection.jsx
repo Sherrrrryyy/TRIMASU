@@ -1,5 +1,4 @@
 import './HeroSection.css';
-import pic1 from '../assets/double layer 3.png'
 
 export default function HeroSection() {
     return (
