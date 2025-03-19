@@ -55,7 +55,7 @@ export default function Navbar() {
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-2">
               <span className="text-xl font-bold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
-                Trimasu
+                Tiramisu
               </span>
             </Link>
 

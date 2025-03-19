@@ -1,11 +1,15 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Link } from "react-router-dom"
-import Navbar from "../components/Navbar.jsx" // Reverted to include .jsx extension
-import Footer from "../components/Footer.jsx"
+import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar.jsx";
+import Footer from "../components/Footer.jsx";
+import { CartContext } from "../context/CartContext.jsx"; // Import CartContext
 
 export default function CheckoutPage() {
+  // Use CartContext to get cart items
+  const { cartItems } = useContext(CartContext);
+
   // Form state
   const [formData, setFormData] = useState({
     firstName: "",
@@ -18,40 +22,33 @@ export default function CheckoutPage() {
     zipCode: "",
     paymentMethod: "cash",
     notes: "",
-  })
+  });
 
-  // Order summary (in a real app, this would come from cart context)
-  const orderSummary = {
-    items: [
-      { id: 1, name: "Classic Tiramisu", quantity: 2, price: 5.99 },
-      { id: 3, name: "Chocolate Hazelnut", quantity: 1, price: 5.49 },
-      { id: 6, name: "Mango Tango", quantity: 3, price: 5.29 },
-    ],
-    subtotal: 28.05,
-    shipping: 0,
-    total: 28.05,
-  }
+  // Calculate order summary dynamically
+  const subtotal = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  const shipping = subtotal > 25 ? 0 : 5.99;
+  const total = subtotal + shipping;
 
   // Handle form input changes
   const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   // Handle form submission
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [orderComplete, setOrderComplete] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [orderComplete, setOrderComplete] = useState(false);
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+    e.preventDefault();
+    setIsSubmitting(true);
 
     // Simulate order processing
     setTimeout(() => {
-      setIsSubmitting(false)
-      setOrderComplete(true)
-    }, 2000)
-  }
+      setIsSubmitting(false);
+      setOrderComplete(true);
+    }, 2000);
+  };
 
   // If order is complete, show success page
   if (orderComplete) {
@@ -93,7 +90,7 @@ export default function CheckoutPage() {
 
             <div className="font-bold flex justify-between text-lg">
               <span>Total:</span>
-              <span className="text-pink-500">${orderSummary.total.toFixed(2)}</span>
+              <span className="text-pink-500">${total.toFixed(2)}</span>
             </div>
           </div>
 
@@ -115,7 +112,7 @@ export default function CheckoutPage() {
 
         <Footer />
       </div>
-    )
+    );
   }
 
   return (
@@ -338,7 +335,7 @@ export default function CheckoutPage() {
 
               {/* Order Items */}
               <div className="space-y-4 mb-6">
-                {orderSummary.items.map((item) => (
+                {cartItems.map((item) => (
                   <div key={item.id} className="flex justify-between">
                     <div>
                       <span className="text-slate-700">{item.name}</span>
@@ -353,15 +350,15 @@ export default function CheckoutPage() {
               <div className="border-t pt-4 space-y-2">
                 <div className="flex justify-between text-slate-600">
                   <span>Subtotal</span>
-                  <span>${orderSummary.subtotal.toFixed(2)}</span>
+                  <span>${subtotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-slate-600">
                   <span>Shipping</span>
-                  <span>{orderSummary.shipping === 0 ? "Free" : `$${orderSummary.shipping.toFixed(2)}`}</span>
+                  <span>{shipping === 0 ? "Free" : `$${shipping.toFixed(2)}`}</span>
                 </div>
                 <div className="flex justify-between font-bold text-lg pt-2 border-t">
                   <span className="text-slate-800">Total</span>
-                  <span className="text-pink-500">${orderSummary.total.toFixed(2)}</span>
+                  <span className="text-pink-500">${total.toFixed(2)}</span>
                 </div>
               </div>
 
@@ -390,5 +387,5 @@ export default function CheckoutPage() {
 
       <Footer />
     </div>
-  )
+  );
 }

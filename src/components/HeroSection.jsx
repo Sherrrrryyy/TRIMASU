@@ -1,5 +1,5 @@
 import './HeroSection.css';
-
+import pic1 from '../assets/double layer 3.png'
 
 export default function HeroSection() {
     return (
@@ -7,11 +7,6 @@ export default function HeroSection() {
         {/* Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-center z-0"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')",
-            backgroundPosition: "center 30%",
-          }}
         >
           {/* Overlay gradient */}
           <div className="absolute inset-0 bg-gradient-to-r from-pink-900/70 via-pink-800/60 to-transparent"></div>

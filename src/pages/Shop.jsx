@@ -1,14 +1,16 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useContext } from "react"
 import Single from '../assets/SINGLE layer 2.png'
 import Single1 from '../assets/SINGLE layer.png'
 import Navbar from "../components/Navbar.jsx"
 import Footer from "../components/Footer.jsx"
+import { CartContext } from "../context/CartContext.jsx"; // Import CartContext
 
 export default function ShopPage() {
   // State for quick view modal
   const [quickViewProduct, setQuickViewProduct] = useState(null)
+  const { addToCart } = useContext(CartContext); // Access addToCart function from context
 
   // Product data
   const products = [
@@ -16,16 +18,14 @@ export default function ShopPage() {
       id: 1,
       name: "Single Layer",
       price: 5.99,
-      image:
-        Single,
+      image: Single,
       description: "Our signature flavor combines mascarpone, espresso, and cocoa for an authentic Italian experience.",
     },
     {
       id: 2,
       name: "Double Layer",
       price: 4.99,
-      image:
-        "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?ixlib=rb-4.0.3&auto=format&fit=crop&w=987&q=80",
+      image: "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?ixlib=rb-4.0.3&auto=format&fit=crop&w=987&q=80",
       description: "Fresh strawberries blended into our creamy base, creating a perfect balance of sweetness and tang.",
     },
     {
@@ -39,32 +39,28 @@ export default function ShopPage() {
       id: 4,
       name: "Double Layer",
       price: 4.49,
-      image:
-        "https://images.unsplash.com/photo-1570197788417-0e82375c9371?ixlib=rb-4.0.3&auto=format&fit=crop&w=987&q=80",
+      image: "https://images.unsplash.com/photo-1570197788417-0e82375c9371?ixlib=rb-4.0.3&auto=format&fit=crop&w=987&q=80",
       description: "Pure Madagascar vanilla beans infused in our creamy base for a timeless classic flavor.",
     },
     {
       id: 5,
       name: "Single Layer",
       price: 6.49,
-      image:
-        "https://images.unsplash.com/photo-1579954115545-a95591f28bfc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
+      image: "https://images.unsplash.com/photo-1579954115545-a95591f28bfc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
       description: "Premium pistachios blended into our signature base for a rich, nutty flavor experience.",
     },
     {
       id: 6,
       name: "Double Layer",
       price: 5.29,
-      image:
-        "https://images.unsplash.com/photo-1501443762994-82bd5dace89a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
+      image: "https://images.unsplash.com/photo-1501443762994-82bd5dace89a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
       description: "Alphonso mangoes blended into a smooth, tropical treat that brings summer to your taste buds.",
     },
     {
       id: 7,
       name: "Single Layer",
       price: 5.49,
-      image:
-        "https://images.unsplash.com/photo-1505394033641-40c6ad1178d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=987&q=80",
+      image: "https://images.unsplash.com/photo-1505394033641-40c6ad1178d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=987&q=80",
       description: "Cool mint gelato with premium dark chocolate chips for a refreshing indulgence.",
     },
     {
@@ -78,21 +74,19 @@ export default function ShopPage() {
       id: 9,
       name: "Single Layer",
       price: 6.29,
-      image:
-        "https://images.unsplash.com/photo-1587563974553-d6c4ef38f6d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=987&q=80",
+      image: "https://images.unsplash.com/photo-1587563974553-d6c4ef38f6d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=987&q=80",
       description: "Creamy cheesecake gelato with blueberry compote swirls and graham cracker pieces.",
     },
   ]
 
   // Handle add to cart
   const handleAddToCart = (product) => {
-    alert(`Added ${product.name} to cart!`)
-    // In a real app, you would dispatch to a cart state/context
+    addToCart(product); // Call addToCart from context
   }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-pink-50/30">
-<Navbar />
+      <Navbar />
       {/* Shop Banner */}
       <div className="bg-gradient-to-r from-pink-500 to-purple-600 text-white py-16 mb-10 mt-16">
         <div className="container mx-auto px-4 text-center">
@@ -140,7 +134,10 @@ export default function ShopPage() {
 
                 {/* Add to Cart Button */}
                 <button
-                  onClick={() => handleAddToCart(product)}
+                  onClick={() => {
+                    handleAddToCart(product);
+                    setQuickViewProduct(null); // Close quick view after adding to cart
+                  }}
                   className="w-full py-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-medium rounded-lg hover:from-pink-600 hover:to-purple-700 transition-colors"
                 >
                   Add to Cart
@@ -242,7 +239,7 @@ export default function ShopPage() {
           </div>
         </div>
       )}
-<Footer />
+      <Footer />
     </div>
   )
 }
