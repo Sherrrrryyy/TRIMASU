@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
 import { CartContext } from "../context/CartContext.jsx"; // Import CartContext
+import { db, collection, addDoc } from "../firebase/firebaseconfig.js"; // Import Firebase Firestore functions
 
 export default function CheckoutPage() {
   // Use CartContext to get cart items
@@ -19,9 +20,7 @@ export default function CheckoutPage() {
     address: "",
     city: "",
     state: "",
-    zipCode: "",
     paymentMethod: "cash",
-    notes: "",
   });
 
   // Calculate order summary dynamically
@@ -39,9 +38,39 @@ export default function CheckoutPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [orderComplete, setOrderComplete] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    // Prepare order data for Firebase
+    const orderData = {
+      customer: {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        phone: formData.phone,
+        address: formData.address,
+        city: formData.city,
+        state: formData.state,
+      },
+      paymentMethod: formData.paymentMethod,
+      cartItems: cartItems.map(item => ({
+        id: item.id,
+        name: item.name,
+        quantity: item.quantity,
+        price: item.price,
+      })),
+      subtotal,
+      shipping,
+      total,
+      orderDate: new Date().toISOString(),
+    };
+
+    try {
+      await addDoc(collection(db, "orders"), orderData);
+    } catch (error) {
+      console.error("Error adding order to Firebase: ", error);
+    }
 
     // Simulate order processing
     setTimeout(() => {
@@ -234,20 +263,6 @@ export default function CheckoutPage() {
                       className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
                     />
                   </div>
-                  <div>
-                    <label htmlFor="zipCode" className="block text-sm font-medium text-slate-700 mb-2">
-                      ZIP/Postal Code *
-                    </label>
-                    <input
-                      type="text"
-                      id="zipCode"
-                      name="zipCode"
-                      value={formData.zipCode}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
-                    />
-                  </div>
                 </div>
               </div>
 
@@ -270,23 +285,21 @@ export default function CheckoutPage() {
                       <p className="text-sm text-slate-500 mt-1">Pay with cash when your order is delivered</p>
                     </div>
                   </label>
+                  <label className="flex items-center p-4 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50">
+                    <input
+                      type="radio"
+                      name="paymentMethod"
+                      value="online"
+                      checked={formData.paymentMethod === "online"}
+                      onChange={handleChange}
+                      className="mr-3 text-pink-500 focus:ring-pink-500"
+                    />
+                    <div>
+                      <span className="font-medium text-slate-800">JazzCash Payment</span>
+                      <p className="text-sm text-slate-500 mt-1">Pay securely using your JazzCash account </p>
+                    </div>
+                  </label>
                 </div>
-              </div>
-
-              {/* Order Notes */}
-              <div className="mb-8">
-                <label htmlFor="notes" className="block text-sm font-medium text-slate-700 mb-2">
-                  Order Notes (Optional)
-                </label>
-                <textarea
-                  id="notes"
-                  name="notes"
-                  value={formData.notes}
-                  onChange={handleChange}
-                  rows="3"
-                  className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
-                  placeholder="Special instructions for delivery or order"
-                ></textarea>
               </div>
 
               {/* Submit Button */}

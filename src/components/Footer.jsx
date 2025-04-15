@@ -33,7 +33,7 @@ export default function Footer() {
                 </span>
               </div>
               <p className="text-slate-400 pr-4">
-                Bringing the authentic taste of Italian gelato to your doorstep since 2010. Handcrafted with love and
+                Bringing the authentic taste of Italian gelato to your doorstep. Handcrafted with love and
                 premium ingredients.
               </p>
               <div className="flex space-x-4">
