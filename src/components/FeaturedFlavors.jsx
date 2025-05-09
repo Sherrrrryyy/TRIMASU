@@ -20,6 +20,7 @@ export default function FeaturedFlavors() {
         Handcrafted with love and premium ingredients, our gelato brings the authentic taste of Italy to your
         doorstep.
       </p>
+      <div className='sticky top-0 z-10'>
       <Swiper
         modules={[Autoplay, Pagination]}
         autoplay={{ delay: 3000 }}
@@ -27,10 +28,10 @@ export default function FeaturedFlavors() {
         loop={true}
         slidesPerView={1}
         spaceBetween={0} // No space between slides
-        className="w-screen h-screen mx-auto" // Full width and height
+        className="mt-10 w-full h-96 mx-auto" // Full width and height
       >
         {images.map((item, i) => (
-          <SwiperSlide key={i} className="w-full h-full">
+          <SwiperSlide key={i} className="w-full h-48">
             <img
               src={item.image}
               alt={`Slide ${i + 1}`}
@@ -39,6 +40,7 @@ export default function FeaturedFlavors() {
           </SwiperSlide>
         ))}
       </Swiper>
+      </div>
     </section>
   );
 }
