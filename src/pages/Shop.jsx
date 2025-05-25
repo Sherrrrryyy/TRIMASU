@@ -16,7 +16,7 @@ export default function ShopPage() {
   const products = [
     {
       id: 1,
-      name: "Single Layer",
+      name: "Single Layer Tiramisu",
       price: 5.99,
       image: Single,
       description: "Our signature flavor combines mascarpone, espresso, and cocoa for an authentic Italian experience.",

@@ -7,10 +7,36 @@ import doubleLayer2 from "../assets/Double layer 2.png";
 
 export default function FeaturedFlavors() {
   // Use only last two images for carousel
-  const images = [
-    { id: 1, image: doubleLayer },
-    { id: 2, image: doubleLayer2 },
-  ];
+ const products = [
+    {
+      id: 1,
+      name: "Single Layer Tiramisu",
+      price: 5.99,
+      image: "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?ixlib=rb-4.0.3&auto=format&fit=crop&w=987&q=80",
+      description: "Our signature flavor combines mascarpone, espresso, and cocoa for an authentic Italian experience.",
+    },
+    {
+      id: 2,
+      name: "Double Layer",
+      price: 4.99,
+      image: "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?ixlib=rb-4.0.3&auto=format&fit=crop&w=987&q=80",
+      description: "Fresh strawberries blended into our creamy base, creating a perfect balance of sweetness and tang.",
+    },
+    {
+      id: 3,
+      name: "Single Layer",
+      price: 5.49,
+      image: "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?ixlib=rb-4.0.3&auto=format&fit=crop&w=987&q=80",
+      description: "Rich chocolate gelato with roasted hazelnuts, inspired by Italy's favorite chocolate spread.",
+    },
+     {
+      id: 3,
+      name: "Single Layer",
+      price: 5.49,
+      image: "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?ixlib=rb-4.0.3&auto=format&fit=crop&w=987&q=80",
+      description: "Rich chocolate gelato with roasted hazelnuts, inspired by Italy's favorite chocolate spread.",
+    }
+  ]
 
   return (
     <section className="py-12 bg-[#f7f7f7] text-center">
@@ -20,27 +46,23 @@ export default function FeaturedFlavors() {
         Handcrafted with love and premium ingredients, our gelato brings the authentic taste of Italy to your
         doorstep.
       </p>
-      <div className='sticky top-0 z-10'>
-      <Swiper
-        modules={[Autoplay, Pagination]}
-        autoplay={{ delay: 3000 }}
-        pagination={{ clickable: true }}
-        loop={true}
-        slidesPerView={1}
-        spaceBetween={0} // No space between slides
-        className="mt-10 w-full h-96 mx-auto" // Full width and height
-      >
-        {images.map((item, i) => (
-          <SwiperSlide key={i} className="w-full h-48">
-            <img
-              src={item.image}
-              alt={`Slide ${i + 1}`}
-              className="w-full h-full object-cover" // Full width and height with proper scaling
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+     <div className="grid  grid-cols-1 sm:grid-cols-4 md:grid-cols-2 lg:grid-cols-48 gap-10 p-8">
+          {products.map((product) => (
+            <div
+              key={product.id}
+              className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+            >
+              {/* Product Image with Quick View */}
+              <div className="relative h-56 overflow-hidden">
+                <img
+                  src={product.image || "/placeholder.svg"}
+                  alt={product.name}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
       </div>
+            </div>
+          ))}
+        </div>
     </section>
   );
 }
