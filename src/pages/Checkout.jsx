@@ -149,7 +149,7 @@ export default function CheckoutPage() {
       <Navbar />
 
       <div className="container mx-auto px-4 py-16 mt-16">
-        <h1 className="text-3xl md:text-4xl font-bold mb-8 text-slate-800">Checkout</h1>
+        <h1 className="text-3xl md:text-4xl py-16 font-bold mb-8 text-slate-800">Checkout</h1>
 
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Checkout Form */}
@@ -354,7 +354,7 @@ export default function CheckoutPage() {
                       <span className="text-slate-700">{item.name}</span>
                       <span className="text-slate-500 text-sm"> x{item.quantity}</span>
                     </div>
-                    <span className="text-slate-700">${(item.price * item.quantity).toFixed(2)}</span>
+                    <span className="text-slate-700">Rs.{(item.price * item.quantity).toFixed(2)}</span>
                   </div>
                 ))}
               </div>
@@ -363,15 +363,15 @@ export default function CheckoutPage() {
               <div className="border-t pt-4 space-y-2">
                 <div className="flex justify-between text-slate-600">
                   <span>Subtotal</span>
-                  <span>${subtotal.toFixed(2)}</span>
+                  <span>Rs.{subtotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-slate-600">
                   <span>Shipping</span>
-                  <span>{shipping === 0 ? "Free" : `$${shipping.toFixed(2)}`}</span>
+                  <span>{shipping === 0 ? "Free" : `Rs.${shipping.toFixed(2)}`}</span>
                 </div>
                 <div className="flex justify-between font-bold text-lg pt-2 border-t">
                   <span className="text-slate-800">Total</span>
-                  <span className="text-pink-500">${total.toFixed(2)}</span>
+                  <span className="text-pink-500">Rs.{total.toFixed(2)}</span>
                 </div>
               </div>
 
