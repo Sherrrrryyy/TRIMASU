@@ -62,7 +62,7 @@ export default function CartPage() {
                     {/* Price */}
                     <div className="md:col-span-2 flex justify-between md:justify-center items-center">
                       <span className="md:hidden font-medium text-slate-700">Price:</span>
-                      <span className="text-slate-800">${item.price.toFixed(2)}</span>
+                      <span className="text-slate-800">Rs.{item.price.toFixed(2)}</span>
                     </div>
 
                     {/* Quantity */}
@@ -94,7 +94,7 @@ export default function CartPage() {
                     {/* Total */}
                     <div className="md:col-span-2 flex justify-between md:justify-center items-center">
                       <span className="md:hidden font-medium text-slate-700">Total:</span>
-                      <span className="font-medium text-slate-800">${(item.price * item.quantity).toFixed(2)}</span>
+                      <span className="font-medium text-slate-800">Rs.{(item.price * item.quantity).toFixed(2)}</span>
                     </div>
                   </div>
                 ))}
@@ -128,7 +128,7 @@ export default function CartPage() {
                 <div className="space-y-3 mb-6">
                   <div className="flex justify-between">
                     <span className="text-slate-600">Subtotal</span>
-                    <span className="text-slate-800">${subtotal.toFixed(2)}</span>
+                    <span className="text-slate-800">Rs.{subtotal.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-slate-600">Shipping</span>
@@ -137,7 +137,7 @@ export default function CartPage() {
                   <div className="border-t pt-3 mt-3">
                     <div className="flex justify-between font-bold">
                       <span className="text-slate-800">Total</span>
-                      <span className="text-pink-500">${total.toFixed(2)}</span>
+                      <span className="text-pink-500">Rs.{total.toFixed(2)}</span>
                     </div>
                     <div className="text-xs text-slate-500 mt-1">Including VAT</div>
                   </div>

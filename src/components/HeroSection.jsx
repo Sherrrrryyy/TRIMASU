@@ -8,7 +8,7 @@ export default function HeroSection() {
           className="absolute inset-0 bg-cover bg-center z-0"
         >
           {/* Overlay gradient */}
-          <div className="absolute inset-0 bg-gradient-to-r from-pink-900/70 via-pink-800/60 to-transparent"></div>
+          <div className="absolute inset-1 from-pink-900/70 via-pink-800/60 to-transparent"></div>
         </div>
   
         {/* Content */}
@@ -18,11 +18,11 @@ export default function HeroSection() {
               Authentic Italian Gelato
             </div>
   
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 animate-fade-in-up animation-delay-150">
-              Tiramisu Perfection – A Taste of Italy in Every Bite!
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 animate-fade-in-up animation-delay-150 text-black">
+             <span className='text-pink-300'>Tiramisu</span>  Perfection, A Taste of Italy in Every Bite!
             </h1>
   
-            <p className="text-lg md:text-xl opacity-90 mb-8 animate-fade-in-up animation-delay-300">
+            <p className="text-pink-300 text-lg md:text-xl opacity-90 mb-8 animate-fade-in-up animation-delay-300">
               Experience the authentic taste of Italian gelato, crafted with traditional recipes and premium ingredients.
               Our signature Tiramisu flavor combines the richness of mascarpone, the boldness of espresso, and the
               delicate sweetness of cocoa for an unforgettable dessert experience.
@@ -38,6 +38,9 @@ export default function HeroSection() {
             {/* Floating ice cream scoop decorations */}
             <div className="absolute -bottom-24 -right-24 w-48 h-48 rounded-full bg-gradient-to-br from-pink-300 to-pink-400 opacity-70 blur-2xl"></div>
             <div className="absolute -bottom-16 -right-8 w-32 h-32 rounded-full bg-gradient-to-br from-purple-300 to-purple-400 opacity-60 blur-xl"></div>
+          </div>
+          <div>
+            <img src="                               " alt="" />
           </div>
         </div>
   
