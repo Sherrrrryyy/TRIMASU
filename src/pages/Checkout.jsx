@@ -4,12 +4,12 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
-import { CartContext } from "../context/CartContext.jsx"; // Import CartContext
 import { db, collection, addDoc } from "../firebase/firebaseconfig.js"; // Import Firebase Firestore functions
+import { CartContext } from "../context/CartContext.jsx"; // Import CartContext
 
 export default function CheckoutPage() {
   // Use CartContext to get cart items
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, clearCart } = useContext(CartContext);
 
   // Form state
   const [formData, setFormData] = useState({
@@ -76,6 +76,7 @@ export default function CheckoutPage() {
     setTimeout(() => {
       setIsSubmitting(false);
       setOrderComplete(true);
+      clearCart();
     }, 2000);
   };
 
